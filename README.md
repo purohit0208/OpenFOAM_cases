@@ -10,8 +10,6 @@ Using icoFoam solver this tutorial simulates 300 s of flow in an elbow. The tri-
 The mesh available from GAMBIT was in .msh format, which can be converted into .foam format using the "fluentMeshToFoam" command, to make it compatible with the OpenFOAM environment. This command generates an additional polyMesh folder in a constant directory, which contains all the mesh data necessary to perform simulations in OpenFOAM.
 Since this tutorial is a 2D problem and OpenFOAM requires your geometries to be in 3D, the mesh in the Z direction has 1 unit length cell size.
 
-
-
 ## Results
 
 The figure below shows the 2D mesh of the elbow tutorial. It is clear from the figure that it is a tri mesh. This geometry has 2 inlets and 1 outlet, which can be seen in the figure. Flow enters from Inlet 1 with 1 m/s velocity in the +X direction and from Inlet 2 with 3 m/s velocity in the +Y direction. The BC for the outlet was pressure-outlet BC.
@@ -22,11 +20,10 @@ Both the left and right edges of the elbow were treated as a NoSlip wall BC, whi
 The solver used for this case is the icoFoam solver, which is a Transient solver used for Laminar and Incompressible flow, which uses the PISO algorithm. elbow.foam file is a .foam file that can be opened in Paraview to analyze the results. The figure below shows velocity contours at t=300 s. 
 
 ![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/f00650e6-7786-4367-891a-9520aa94acc0)
+
 ## Lessons Learned
 
-
 The objectives of this tutorial were to learn how to do basic case setup in OpenFOAM, and how to set up initial conditions for p and U. The mesh for this tutorial was generated in GAMBIT(which is also available in the OpenFOAM resources folder). The mesh was converted from .msh to .foam format, to run this in an OpenFOAM environment. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
-
 
 
 ## 2) compressible-sonicFoam-forwardStep tutorial:
@@ -37,10 +34,6 @@ The file T in the "0" directory includes the initial temperature values. Interna
 
 Different properties of a compressible gas can be set in the "thermoPhysicalProperties" file. After defining the models for different thermo-physical properties of the gas, the constants and coefficients of each model can be defined in the sub-dictionary mixture in the same file. In the "turbulenceProperties" file, the appropriate turbulent mode can be set(in this case it is laminar).
 
-
-
-
-
 ## Results
 
 The figure below shows the 2D mesh of the forwardStep tutorial. Geometry and Mesh for this case were generated using the blockMeshDict file, by using the blockMesh command. The simulation was done using a sonicFoam solver, which is a transient solver used for compressible flow simulation for Laminar/Turbulent flow and for Transonic/Supersonic flow by using the PIMPLE algorithm. Since this tutorial is a 2D problem and OpenFOAM requires your geometries to be in 3D, the mesh in the Z direction has 1 unit length cell size. These initial and Boundary Conditions can be seen in folder "0" in "compressible-sonicFoam-laminar-forwardStep.zip" files. 
@@ -49,14 +42,41 @@ The figure below shows the 2D mesh of the forwardStep tutorial. Geometry and Mes
 
 forwardStep.foam file is a .foam file that can be opened in Paraview to analyze the results. The figure below shows velocity and pressure contours at t=60 s. 
 
-
 ![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/f37f3d9a-6cef-4566-95ec-45aef07b594e)
 
 ![02](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/7ff23404-a3ea-4ee8-97d2-818b31b14425)
+
 ## Lessons Learned
 
-
 The objective of this tutorial was to learn blockMesh utility of the OpenFOAM environment. Vertices were defined via coordinates as well as surfaces and volumes were defined via vertices. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
+
+
+## 3) compressible-sonicFoam-shockTube tutorial:
+
+This case contains a famous shockTube tutorial available in OpenFOAM tutorials. Simulation and result files for this tutorial are available in "compressible-sonicFoam-laminar-shockTube.zip" files. Using sonicFoam solver this tutorial simulates 0.06 s of flow inside a shock tube. 
+
+By looking at the "blockMeshDict" file, it is obvious that it is a 1D mesh because the number of mesh cells in the Y and Z directions is 1. The mesh density can be set in the part of the block by changing X direction mesh size(e.g. change it from 100 to 1000 to 10000). Another important file is "setFieldsDict", which is used by the tool setFields for patching(assigning an amount to a region) in the simulation. 
+In the defaultFeildValues, a value is assigned to the whole domain, while in the regions sub-section a specific value is patched to a certain region of the domain. In this example, the region is defined as a cube, by the coordinates of one of its diagonals in boxToCell. After choosing the region, the new values are assigned to the parameters for this region.
+
+## Results
+
+The figure below shows a 1D mesh of the shockTube tutorial, which has 10000 cells. Geometry and Mesh for this case were generated using the blockMeshDict file, by using the blockMesh command. setFields command was used to set fields in a particular region of the mesh.
+The simulation was done using a sonicFoam solver, which is a transient solver used for compressible flow simulation for Laminar/Turbulent flow and for Transonic/Supersonic flow by using the PIMPLE algorithm. Since this tutorial is a 1D problem and OpenFOAM requires your geometries to be in 3D, the mesh in Y and Z directions has 1 unit length cell size. 
+
+![00](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/0e383807-dc34-48d4-b629-c64a60378cad)
+
+In the 10,000 cells case with 10 bar and 0.1 bar case setup, the simulation crashes with the default deltaT(1e-5) hence it has been set to 1e-6 to adjust Courant Number. shockTube.foam file is a .foam file that can be opened in Paraview to analyze the results. The figure below shows velocity, pressure, and temperature contours at t=0.007 s for 10 bar/0.1 bar and 10000 cells. Shock travel for the entire 0.6 sec can be seen in the video format in the 00.mp4 file in "compressible-sonicFoam-laminar-shockTube.zip" files.
+
+![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/29fb2f36-4858-4449-9103-039d0179e1a1)
+
+![02](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/13706b41-c961-4fee-97aa-042f3f0ec28f)
+
+![03](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/4f61d966-d9a1-4423-a7dc-87912a596447)
+
+## Lessons Learned
+
+The objectives of this tutorial were to understand the setFields utility of the OpenFOAM environment as well as to investigate the effect of grid resolution. The number of cells used in this tutorial is 10,000 but a different mesh can be generated by changing the no of cells in the blockMeshDict file to study the effects of grid resolution. For initial values in this tutorial, 10 bar/0.1 bar was used which can also be changed to 1 bar/0.1 bar. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
+
 
 
 
