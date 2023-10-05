@@ -173,5 +173,35 @@ The simulation was done using interFoam solver, which is for two incompressible,
 The objective of this tutorial was to understand multiphase modeling in OpenFOAM and to understand how to set viscosity, surface tension, and density for two phases. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
 
 
+## 7) multiphase-compressibleInterFoam-laminar-depthCharge3D tutorial:
+
+This case contains the famous depthCharge3D tutorial available in OpenFOAM tutorials. Simulation and result files for this tutorial are available in "multiphase-compressibleInterFoam-laminar-depthCharge3D.zip" files. Using compressibleInterFoam solver this tutorial simulates the example case for 0.5 sec.
+
+In the 0 directory, alpha.water, p_rgh, and p files exist. In the alpha.water and p_rgh files, the initial values and boundary conditions for the water phase and pressure are set. In the turbulenceProperties file in the constant directory, simulationType can be set which is set to laminar for this case. In the thermophysicalProperties, there is a list of phases in the simulation(in this case air and water) and sigma is the surface tension between two phases. Individual phase properties are set in thermophysicalProperties.air and thermophysicalProperties.water files. In the g file, the gravitational field and its direction are defined.  
+
+## Results
+
+The figure below shows the 3D mesh for this case. The decomposeParDict file in the system directory includes the parallel settings, such as the number of domains and how the domain is going to be divided into these subdomains for parallel processing. In this file, numberOfSubdomains should be equal to the number of cores used and the method should show the method to be used. The three numbers (1 4 1) indicate the number of pieces the mesh is split into in the X, Y, and Z directions, respectively and their multiplication should be equal to numberOfSubdomains. 
+
+
+![00](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/13ca8ec3-5d2f-483c-bfba-10075689550d)
+
+
+The geometry and mesh for this tutorial were generated using the blockMeshDict file, by using the blockMesh command. setFields command was used to set variable values in a particular region of the mesh. For running the simulation in parallel mode, the computing domain needs to be divided into subdomains and a core should be assigned to each subdomain. This can be done using decomposePar command. After executing this command, four new directories are made in the simulation directory and each subdomain calculation will be saved in the respective processor directory. The parallel run can be initiated using the following command:
+
+mpirun -np 4 compressibleInterFoam -parallel > log
+
+log is the filename for saving the simulation status data, instead of printing them on screen. For exporting data for post-processing, at first, all the processors' data should be put together and a single combined directory for each time step should be created. By executing reconstructPar command, all the cores data will be combined and new directories for each time step will be created in the simulation directory.
+
+The simulation was done using a compressibleInterFoam solver, which is for two compressible, non-isothermal immiscible fluids using a VOF(volume of fluid) approach using the PIMPLE algorithm. 
+depthCharge3D.foam file is a .foam file that can be opened in Paraview to analyze the results. 
+
+## Lessons Learned
+
+The objectives of this tutorial were to understand the difference between compressible and incompressible solvers in OpenFOAM as well as to understand parallel processing and different discretization methods in OpenFOAM. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
+
+
+
+
 
 
