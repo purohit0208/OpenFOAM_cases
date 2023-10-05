@@ -102,6 +102,33 @@ pitzDaily.foam file is a .foam file that can be opened in Paraview to analyze th
 The objective of this tutorial was to understand turbulence modeling in OpenFOAM and to understand steady-state simulation in the OpenFOAM environment. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
 
 
+## 5) incompressible-pisoFoam-LES-pitzDaily tutorial:
+
+This case contains the famous pitzDaily tutorial available in OpenFOAM tutorials. Simulation and result files for this tutorial are available in "incompressible-pisoFoam-LES-pitzDaily.zip" files. Using pisoFoam solver this tutorial runs a backward-facing step case for 0.6 s with kEqn(LES) turbulence model.  
+
+When a turbulence model is chosen, the value of its constants and its boundary values should be set in the appropriate files in the 0 folder. For kEpsilon model k and epsilon, files need to be modified, for kOmega model k and omega files need to be modified. In the "turbulenceProperties" file, the simulationType can be set as either RAS, LES, or laminar. Then the corresponding sub-dictionary of the chosen simulation type needs to be defined. 
+
+## Results
+
+The figure below shows the 2D mesh for the pitzDaily case. The geometry and mesh for this tutorial were generated using the blockMeshDict file, by using the blockMesh command. Since this tutorial is a 2D problem and OpenFOAM requires your geometries to be in 3D, the mesh in the Z direction has 1 unit length cell size. Velocity-Inlet BC was chosen at inlet and at Outlet pressure-outlet BC was chosen. For upper and lower walls noSlip BC was assigned while both front and back planes were assigned empty BC. For k, epsilon and nut wall function was applied on upper and lower walls. 
+
+![Bild1](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/cb5e0f1f-fa55-479a-81e2-23f833d64d5f)
+
+The simulation was done using a pisoFoam solver, which is a transient solver used for incompressible flow simulation for Laminar/Turbulent flow that uses the PISO algorithm. pitzDaily.foam file is a .foam file that can be opened in Paraview to analyze the results. The figure below shows results in the form of contour plots of the velocity magnitude at t=0.2, 0.4, and 0.6 sec.
+
+![03](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/a77cc1fb-b511-43a9-9be6-775d978fea90)
+
+![02](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/94210379-ac98-42a1-847b-ae997e8f44ee)
+
+![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/06ea776b-8a23-4ec7-8bed-ffa0d15755cd)
+
+For the kEpsilon model after 0.2 sec, the results are similar to the steady-state simulation. Therefore, it can be assumed it has reached a steady state. Other models do not have a steady situation and fluctuate all the time, so they require averaging to obtain steady-state results. LES does not use averaging to obtain the turbulence values, therefore LES simulations should use a higher grid resolution and smaller time steps.
+
+## Lessons Learned
+
+The objective of this tutorial was to understand turbulence modeling in OpenFOAM and to understand the difference between transient and steady-state simulation in the OpenFOAM environment. Additionally, different turbulence models like Smagorinsky(LES) or kEpsilon(RAS) turbulence models can be tried with this tutorial.
+At the end of this tutorial, the simulation results were analyzed in Paraview software. 
+
 
 
 
