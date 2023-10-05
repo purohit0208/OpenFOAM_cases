@@ -1,7 +1,7 @@
 
 # OpenFOAM_cases:
 
-This repository contains OpenFOAM tutorials and their brief description. Some of these tutorials are standard test cases available in OpenFOAM tutorials, while others are self-made.
+This repository contains OpenFOAM tutorials and their brief description. Some of these tutorials are standard test cases available in OpenFOAM tutorials directory, while others are self-made.
 
 ## 1) incompressible-icoFoam-elbow tutorial:
 
@@ -142,7 +142,7 @@ Figure below shows the 2D mesh for the damBreak case. The geometry and mesh for 
 
 ![Bild1](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/25bd2f80-1e0e-4579-8777-b1623c0d269f)
 
-The simulation was done using interFoam solver, which is for two incompressible, isothermal immiscible fluids using a VOF(volume of fluid) approach using the PIMPLE algorithm. damBreak.foam file is a .foam file that can be opened in Paraview to analyze the results. The entire simulation result for 60 sec in video format can be seen in the 00.mp4 file in "multiphase-interFoam-laminar-damBreak.zip" files. The figure below shows results in the form of contour plots of the alpha.water at t=0.0, 0.1, 0.3, 0.35, 0.5, 0.6, 0.7, 1.0, 1.5, 2.0 and 3.0 sec.
+The simulation was done using interFoam solver, which is for two incompressible, isothermal immiscible fluids using a VOF(volume of fluid) approach using the PIMPLE algorithm. damBreak.foam file is a .foam file that can be opened in Paraview to analyze the results. The entire simulation result for 60 sec in video format can be seen in the 00.mp4 file in "multiphase-interFoam-laminar-damBreak.zip" files. The figure below shows results in the form of contour plots of the alpha.water at t=0.0, 0.1, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 1.0, 1.5, 2.0 and 3.0 sec.
 
 ![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/e32c4f5f-871a-4a85-98ee-1fcfa20c9516)
 
