@@ -130,5 +130,48 @@ The objective of this tutorial was to understand turbulence modeling in OpenFOAM
 At the end of this tutorial, the simulation results were analyzed in Paraview software. 
 
 
+## 6) multiphase-interFoam-laminar-damBreak tutorial:
+
+This case contains the famous damBreak tutorial available in OpenFOAM tutorials. Simulation and result files for this tutorial are available in "multiphase-interFoam-laminar-damBreak.zip" files. Using interFoam solver this tutorial simulates the breaking of a dam for 60 sec.
+
+In the 0 directory, alpha.water, p_rgh and U files exist. In the alpha.water and p_rgh files, the initial values and boundary conditions for the water phase and pressure are set. In the turbulenceProperties file in the constant directory, simulationType can be set which is set to laminar for this case. In the transportProperties, there is the list of phases in the simulation(in this case air and water) and sigma is the surface tension between two phases. In the g file, the gravitational field and its direction are defined.  
+
+## Results
+
+Figure below shows the 2D mesh for the damBreak case. The geometry and mesh for this tutorial were generated using the blockMeshDict file, by using the blockMesh command. Since this tutorial is a 2D problem and OpenFOAM requires your geometries to be in 3D, the mesh in the Z direction has 1 unit length cell size. On leftwall, rightWall, and lowerWall noSlip BC was applied while inletOutlet BC was applied to the atmosphere. inletOutlet BC is used when the flow direction is not known. When the flux direction is toward the outside of the domain, it works like a zeroGradient BC and when the flux is toward inside the domain it is like a fixedValue BC. 
+
+![Bild1](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/25bd2f80-1e0e-4579-8777-b1623c0d269f)
+
+The simulation was done using interFoam solver, which is for two incompressible, isothermal immiscible fluids using a VOF(volume of fluid) approach using the PIMPLE algorithm. damBreak.foam file is a .foam file that can be opened in Paraview to analyze the results. The entire simulation result for 60 sec in video format can be seen in the 00.mp4 file in "multiphase-interFoam-laminar-damBreak.zip" files. The figure below shows results in the form of contour plots of the alpha.water at t=0.0, 0.1, 0.3, 0.35, 0.5, 0.6, 0.7, 1.0, 1.5, 2.0 and 3.0 sec.
+
+![01](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/e32c4f5f-871a-4a85-98ee-1fcfa20c9516)
+
+![02](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/68c4536c-ecf7-4262-ba7d-d4a76e6fb4aa)
+
+![03](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/93c69cae-0cbe-49d4-93c0-fe1cfcaf7b20)
+
+![04](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/63db435c-8419-458c-a1d8-abae8b634e06)
+
+![05](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/cacde7f1-a77a-4409-b679-9715a62bc815)
+
+![06](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/f94645d3-a3b4-4c34-af8d-5e1e26523876)
+
+![07](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/59b58b01-3ec9-4b4b-a1b9-e185befa65b9)
+
+![08](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/6d8ccecd-34c5-48eb-a2be-c087b3f2f067)
+
+![09](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/8b3aa21e-7b82-4319-a051-c2e2233c5e95)
+
+![10](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/b1bbc200-cabf-4548-a161-d9fa501984b6)
+
+![11](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/68680717-f5d4-4fa3-bcdd-929788fcc96c)
+
+![12](https://github.com/purohit0208/OpenFOAM_cases/assets/85656918/1c3ff468-b0f0-46f0-a676-16dd69347eb2)
+
+## Lessons Learned
+
+The objective of this tutorial was to understand multiphase modeling in OpenFOAM and to understand how to set viscosity, surface tension, and density for two phases. At the end of this tutorial, the simulation results were analyzed in Paraview software. 
+
+
 
 
